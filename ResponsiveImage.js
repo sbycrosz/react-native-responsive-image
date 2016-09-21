@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 export default class ResponsiveImage extends React.Component {
+  static preferredPixelRatio = PixelRatio.get();
 
   static propTypes = {
     ...Image.propTypes,
@@ -28,7 +29,7 @@ export default class ResponsiveImage extends React.Component {
       parseFloat(ratioA) - parseFloat(ratioB)
     );
     for (let ii = 0; ii < pixelRatios.length; ii++) {
-      if (pixelRatios[ii] >= PixelRatio.get()) {
+      if (pixelRatios[ii] >= ResponsiveImage.preferredPixelRatio) {
         return sources[pixelRatios[ii]];
       }
     }
